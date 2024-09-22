@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+:root {
+  --speed: 1.4s;
+}
+
+.preload *,.preload *::before,.preload *::after {
+  animation-duration: 0s !important;
+  -webkit-animation-duration: 0s !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    background-color: #010409;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../public/assets/images/space.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    opacity: .3;
+    z-index: -1;
+  }
+
+.game__header {
+    display: flex;
+    flex-direction: column;
+}
+
+.game__header img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.game__container {
+  width: 600px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+
+.game__line {
+  height: 2px;
+  width: 100%;
+  position: relative;
+  background-repeat: repeat;
+  background-color: #dcdcdc;
+  background-size: contain;
+  animation: road 0.6s infinite linear;
+}
+
+.game__line::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  right: 0;
+  border: 1px solid #7878782b;
+}
+
+#alien {
+  position: absolute;
+  top: -54px;
+  left: 0;
+  z-index: 99;
+}
+
+#mountain {
+  position: absolute;
+  top: -55px;
+  right: 0;
+  animation: move var(--speed) infinite linear;
+  animation-delay: 0.7s;
+}
+
+.game__line img {
+  height: 60px;
+}
+
+.game__obstacles {
+  position: relative;
+  z-index: -1;
+}
+
+.game__obstacles::before {
+  background-image: url(https://i.imgur.com/3DoMNq2.png);
+  top: -170px;
+  right: -350px;
+  animation: cloud-one var(--speed) infinite linear;
+  animation-delay: 0.2s;
+}
+
+.game__obstacles::before,
+.game__obstacles::after {
+  position: absolute;
+  content: "";
+  height: 25px;
+  width: 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.game__obstacles::after {
+  background-image: url(https://i.imgur.com/3DoMNq2.png);
+  top: -140px;
+  right: -30px;
+  animation: cloud-two var(--speed) infinite linear;
+}
+
+.game__jump {
+  animation: jump 0.6s infinite linear;
+}
+
+.game__timer {
+  font-size: 20px;
+  padding-top: 15px;
+  font-family: "Press Start 2P", cursive;
+  color: #fff;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.game__timer p {
+  padding-top: 10px;
+  font-size: 10px;
+  text-align: center;
+}
+
+@keyframes move {
+  0% {
+    right: -50px;
+  }
+
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes jump {
+  0% {
+    top: -57px;
+  }
+
+  25% {
+    top: -90px;
+  }
+
+  50% {
+    top: -140px;
+  }
+
+  75% {
+    top: -90px;
+  }
+
+  100% {
+    top: -55px;
+  }
+}
+
+@keyframes cloud-one {
+  0% {
+    right: -350px;
+  }
+
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes cloud-two {
+  0% {
+    right: -30px;
+  }
+
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes road {
+  0% {
+    background-position-x: 150px;
+  }
+
+  100% {
+    background-position-x: 0;
+  }
+}
