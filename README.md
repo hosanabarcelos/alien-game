@@ -22,7 +22,7 @@ Clone the project:
 git clone https://github.com/hosanabarcelos/alien-game.git
 ```
 
-Select the `index.html` file in your file explorer and open it with your preferred browser.<br /> 
+Inside the `src` folder, select the `index.html` file in your file explorer and open it with your preferred browser.<br /> 
 Or, if you're using the terminal, run:
 ``` bash
 open index.html # to Mac
