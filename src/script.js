@@ -46,34 +46,48 @@ function jump() {
         isJumping = false;
       }, 600);
     }
-  }
+}
 
 document.addEventListener("keydown", (event) => {
-  if (event.code === "Space") {
-    if (document.body.classList.contains("preload")) {
-      document.body.classList.remove("preload");
-      startTime();
-      backgroundSound.play();
-    } else {
-      jump();
+    if (event.code === "Space") {
+      if (document.body.classList.contains("preload")) {
+        document.body.classList.remove("preload");
+        startTime();
+        backgroundSound.play();
+
+        mountain.style.visibility = 'hidden';
+
+        setTimeout(() => {
+          mountain.style.visibility = 'visible';
+          mountain.style.animationPlayState = 'running';
+        }, 2000);
+
+        mountain.style.animationPlayState = 'paused';
+      } else {
+        jump();
+      }
     }
-  }
 });
 
-const liveCheck = setInterval(() => {
-  const topAlien = parseInt(window.getComputedStyle(alien).getPropertyValue("top"));
-  const rightMountain = parseInt(window.getComputedStyle(mountain).getPropertyValue("right"));
 
-  if (rightMountain > 505 && rightMountain < 540 && topAlien > -85) {
-    const finalTime = timer.textContent;
-    resetTime();
+const gameOverCheck = setInterval(() => {
+    const topAlien = parseInt(window.getComputedStyle(alien).getPropertyValue("top"));
+    const rightMountain = parseInt(window.getComputedStyle(mountain).getPropertyValue("right"));
 
-    gameOverSound.play();
+    if (rightMountain > 505 && rightMountain < 540 && topAlien > -85) {
+      const finalTime = timer.textContent;
+      resetTime();
 
-    backgroundSound.pause();
-    backgroundSound.currentTime = 0;
+      gameOverSound.play();
 
-    alert(` 👽 Game Over \n ⌚ Timer: ${finalTime}`);
-    document.body.classList.add("preload");
-  }
+      backgroundSound.pause();
+      backgroundSound.currentTime = 0;
+
+      alert(` 👽 Game Over \n ⌚ Timer: ${finalTime}`);
+      document.body.classList.add("preload");
+
+      mountain.style.visibility = 'hidden';
+      mountain.style.animationPlayState = 'paused';
+    }
 }, 10);
+
